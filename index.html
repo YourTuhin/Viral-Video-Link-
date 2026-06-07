@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Viral Video Link 🔞</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://sad.adsgram.ai/js/sad.min.js"></script>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --surface-color: #1e293b;
+            --primary-color: #38bdf8;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-gold: #fbbf24;
+            --success-color: #22c55e;
+            --danger-color: #ef4444;
+            --border-radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding-bottom: 90px;
+            font-size: 14px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+
+        .app-tab-content {
+            display: none;
+        }
+        .app-tab-content.active {
+            display: block;
+        }
+
+        .profile-header {
+            background: var(--surface-color);
+            border-radius: var(--border-radius);
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 16px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #334155;
+            text-align: center;
+        }
+        
+        .adsterra-banner-container {
+            background: #131c2e;
+            border: 1px solid #334155;
+            border-radius: var(--border-radius);
+            padding: 8px;
+            margin-bottom: 16px;
+            text-align: center;
+            min-height: 70px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .premium-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: linear-gradient(135deg, #e11d48, #f43f5e);
+            color: white;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-bottom-left-radius: 12px;
+            text-transform: uppercase;
+        }
+
+        .meta-info h1 {
+            font-size: 20px;
+            font-weight: 800;
+            margin-top: 10px;
+            margin-bottom: 6px;
+            color: var(--primary-color);
+        }
+        .meta-info p {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .search-box-input {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: var(--border-radius);
+            border: 1px solid #334155;
+            background: var(--surface-color);
+            color: var(--text-color);
+            outline: none;
+            margin-bottom: 16px;
+        }
+
+        .section-header {
+            font-size: 16px;
+            font-weight: 700;
+            margin-top: 8px;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+            border-left: 4px solid var(--primary-color);
+            padding-left: 8px;
+        }
+
+        .tasks-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .file-card {
+            background: var(--surface-color);
+            border-radius: var(--border-radius);
+            padding: 12px;
+            border: 1px solid #334155;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+        }
+        .file-thumb-container {
+            flex-shrink: 0;
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+        .file-thumb-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .file-card-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            min-width: 0;
+        }
+        .file-card-info h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-color);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .file-card-info p {
+            font-size: 12px;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .file-action-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+        }
+
+        .app-btn {
+            background-color: var(--primary-color);
+            color: #0f172a;
+            border: none;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            flex-grow: 1;
+        }
+        .app-btn.btn-disabled {
+            background-color: #1e293b !important;
+            color: #64748b !important;
+            cursor: not-allowed;
+            pointer-events: none;
+            border: 1px solid #334155;
+        }
+        
+        .share-circle-btn {
+            background: #e2e8f0;
+            color: #2563eb;
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .bottom-tabs-nav {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            height: 70px;
+            background: var(--surface-color);
+            border-top: 1px solid #334155;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 999;
+        }
+        .tab-trigger-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-muted);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            flex: 1;
+            gap: 4px;
+        }
+        .tab-trigger-btn.active-tab {
+            color: var(--primary-color);
+        }
+        .tab-trigger-btn svg { width: 22px; height: 22px; fill: currentColor; }
+        .tab-trigger-btn span { font-size: 11px; font-weight: 600; }
+
+        .toast-box-holder {
+            position: fixed;
+            top: 20px; left: 50%;
+            transform: translateX(-50%);
+            z-index: 99999;
+            width: 90%;
+            max-width: 400px;
+        }
+        .toast-msg {
+            background: #1e293b;
+            color: #f8fafc;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 13px;
+            border: 1px solid #475569;
+            margin-bottom: 8px;
+        }
+
+        .profile-avatar-circle {
+            width: 75px;
+            height: 75px;
+            background: #38bdf8;
+            color: #0f172a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            border: 3px solid #475569;
+        }
+        .tg-info-item {
+            font-size: 14px;
+            color: var(--text-color);
+            margin: 4px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="toast-box-holder" id="toastBoxHolder"></div>
+
+    <div class="container">
+
+        <div id="tab-home" class="app-tab-content active">
+            
+            <div class="adsterra-banner-container" style="background: #131c2e; border: 1px solid #334155; border-radius: 16px; padding: 8px; margin-bottom: 16px; text-align: center;">
+                <span class="text-xs text-gray-500" style="margin-bottom:6px; display:block; font-size: 11px; color: #94a3b8;">Sponsored Advertisement</span>
+                
+                <a id="slider-link" href="#" target="_blank" style="display: inline-block; width: 100%; max-width: 320px;">
+                    <img id="slider-img" src="" alt="Support Us" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid #334155; display: block; margin: 0 auto; transition: opacity 0.5s ease-in-out;">
+                </a>
+            </div>
+
+            <header class="profile-header">
+                <span class="premium-badge">PREMIUM</span>
+                <div class="meta-info">
+                    <h1>VIRAL VIDEO LINK</h1>
+                    <p>Ads দেখে ভিডিও আনলক করুন এবং ভিডিওর আসল মজা নিন!</p>
+                </div>
+            </header>
+
+            <div class="section-header">Latest Uploads</div>
+            <div id="latest-uploads-grid" class="tasks-stack"></div>
+        </div>
+
+        <div id="tab-files" class="app-tab-content">
+            <input type="text" class="search-box-input" id="searchInput" placeholder="ফাইল খুঁজুন..." oninput="handleSearch()">
+            <div class="section-header">Available Files</div>
+            <div id="files-grid" class="tasks-stack"></div>
+            <div id="no-results" style="display: none; text-align: center; padding: 20px;">কোনো ফাইল পাওয়া যায়নি।</div>
+        </div>
+
+        <div id="tab-profile" class="app-tab-content">
+            <div class="profile-header">
+                <div class="profile-avatar-circle" id="user-avatar-letter">U</div>
+                <h2 id="user-display-name" style="color: var(--primary-color);">Telegram User</h2>
+                <p id="user-tg-username" class="text-muted">@username</p>
+                <div style="margin-top:10px; border-top:1px solid #334155; width:100%; padding-top:8px;">
+                    <div class="tg-info-item">User ID: <span id="user-tg-id" class="font-mono text-xs">Loading...</span></div>
+                </div>
+            </div>
+
+            <div class="section-header"><i class="fas fa-users"></i> Invite Friends (আমন্ত্রণ জানান)</div>
+            <div style="background: var(--surface-color); border: 1px solid #334155; border-radius: var(--border-radius); padding: 16px; margin-bottom: 16px; text-align: center;">
+                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px; line-height: 1.5;">
+                    আপনার বন্ধুদের আমন্ত্রণ জানাতে নিচের লিংকটি কপি করে শেয়ার করুন!
+                </p>
+                <div style="display: flex; gap: 8px; background: #0f172a; padding: 8px; border-radius: 12px; border: 1px solid #334155; align-items: center;">
+                    <input type="text" id="refer-link-input" readonly value="Loading link..." 
+                           style="background: transparent; border: none; color: var(--text-color); font-size: 12px; width: 100%; outline: none; font-family: monospace; padding-left: 4px;">
+                    <button onclick="copyReferLink()" style="background: var(--primary-color); color: #0f172a; border: none; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: bold; cursor: pointer; flex-shrink: 0;">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                </div>
+            </div>
+
+            <div class="section-header"><i class="fas fa-tasks"></i> Task To Earning (টাস্ক সমূহ)</div>
+            <div id="earning-tasks-container" class="tasks-stack"></div>
+        </div>
+
+    </div>
+
+    <nav class="bottom-tabs-nav">
+        <button class="tab-trigger-btn active-tab" onclick="switchTabs('home', this)">
+            <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            <span>Home</span>
+        </button>
+        <button class="tab-trigger-btn" onclick="switchTabs('files', this)">
+            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+            <span>Files</span>
+        </button>
+        <button class="tab-trigger-btn" onclick="switchTabs('profile', this)">
+            <i class="fas fa-user-circle" style="font-size:20px;"></i>
+            <span>Profile</span>
+        </button>
+    </nav>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+    <script>
+        // 🔗 আপনার টেলিগ্রাম বটের ইউজারনেম এখানে দিন (@ চিহ্ন ছাড়া)
+        const TELEGRAM_BOT_USERNAME = "PremiumEarnVideo_Bot"; 
+
+        // 🔴 এখানে আপনার ফটোগুলো এবং এডস্টেরা ডাইরেক্ট লিংকগুলো সাজিয়ে লিখুন
+        const adSliderData = [
+            {
+                img: "https://i.ibb.co/v4xY79n/ad-banner-320x50.gif",
+                link: "https://www.highrateprofit.com/১ম_ডাইরেক্ট_লিংক"
+            },
+            {
+                img: "https://via.placeholder.com/320x50.png?text=Second+Premium+Ad",
+                link: "https://www.highrateprofit.com/২য়_ডাইরেক্ট_লিংক"
+            }
+        ];
+
+        // ⚙️ আপনার নতুন ফায়ারবেস কনফিগ কোডটি নিচে বসান ⚙️
+        const firebaseConfig = {
+  apiKey: "AIzaSyAuUa3nCTv3wWzgCtzVvCkQHU2nkZGR9JI",
+  authDomain: "viral-video-link-4d4dd.firebaseapp.com",
+  projectId: "viral-video-link-4d4dd",
+  storageBucket: "viral-video-link-4d4dd.firebasestorage.app",
+  messagingSenderId: "638548664679",
+  appId: "1:638548664679:web:8698a2635673cb74c8cfc2"
+};
+        
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        let timerDuration = 10;
+        let directAdUrl = ""; 
+        let adsgramBlockId1 = "";
+        let adsgramBlockId2 = "";
+        let allFilesData = [];
+        let userId = "";
+
+        const tg = window.Telegram ? window.Telegram.WebApp : null;
+        if(tg) {
+            tg.ready();
+            tg.expand();
+        }
+
+        let currentSlideIndex = 0;
+        function updateAdSlide() {
+            const sliderImg = document.getElementById('slider-img');
+            const sliderLink = document.getElementById('slider-link');
+            if(!sliderImg || !sliderLink) return;
+            
+            sliderImg.style.opacity = 0;
+            setTimeout(() => {
+                const currentAd = adSliderData[currentSlideIndex];
+                sliderImg.src = currentAd.img;
+                sliderLink.href = currentAd.link;
+                sliderImg.style.opacity = 1;
+                currentSlideIndex = (currentSlideIndex + 1) % adSliderData.length;
+            }, 500);
+        }
+
+        function generateReferLink(rawId) {
+            const numericId = rawId.replace("tg_", "");
+            const referUrl = `https://t.me/${TELEGRAM_BOT_USERNAME}?start=ref_${numericId}`;
+            const linkInput = document.getElementById('refer-link-input');
+            if (linkInput) linkInput.value = referUrl;
+        }
+
+        window.copyReferLink = function() {
+            const linkInput = document.getElementById('refer-link-input');
+            if (!linkInput || linkInput.value.includes("Loading")) return;
+            
+            linkInput.select();
+            linkInput.setSelectionRange(0, 99999);
+            
+            try {
+                navigator.clipboard.writeText(linkInput.value);
+                showCustomToast("আমন্ত্রণ লিংক কপি হয়েছে! 🎉");
+            } catch (err) {
+                document.execCommand('copy');
+                showCustomToast("আমন্ত্রণ লিংক কপি হয়েছে! 🎉");
+            }
+        }
+
+        window.getFileData = function(fileId) {
+            let key = `file_ad_data_${fileId}`;
+            let stored = localStorage.getItem(key);
+            if (!stored) return { count: 0, unlockTime: null };
+            try {
+                let parsed = JSON.parse(stored);
+                if (parsed.unlockTime && (Date.now() - parsed.unlockTime > 3600000)) {
+                    localStorage.removeItem(key);
+                    return { count: 0, unlockTime: null };
+                }
+                return parsed;
+            } catch(e) { return { count: 0, unlockTime: null }; }
+        }
+
+        window.setFileData = function(fileId, count, unlockTime = null) {
+            let key = `file_ad_data_${fileId}`;
+            localStorage.setItem(key, JSON.stringify({ count, unlockTime }));
+        }
+
+        async function initUser() {
+            let tgUser = tg && tg.initDataUnsafe ? tg.initDataUnsafe.user : null;
+            
+            if (tgUser) {
+                userId = "tg_" + tgUser.id;
+                document.getElementById('user-display-name').textContent = (tgUser.first_name + " " + (tgUser.last_name || "")).trim();
+                document.getElementById('user-tg-username').textContent = tgUser.username ? "@" + tgUser.username : "@NoUsername";
+                document.getElementById('user-tg-id').textContent = tgUser.id;
+                document.getElementById('user-avatar-letter').textContent = tgUser.first_name.charAt(0).toUpperCase();
+            } else {
+                userId = localStorage.getItem('app_user_id');
+                if (!userId) {
+                    userId = 'usr_' + Math.random().toString(36).substr(2, 9);
+                    localStorage.setItem('app_user_id', userId);
+                }
+                document.getElementById('user-display-name').textContent = "Demo User";
+                document.getElementById('user-tg-username').textContent = "@guest_profile";
+                document.getElementById('user-tg-id').textContent = userId;
+                document.getElementById('user-avatar-letter').textContent = "D";
+            }
+
+            let today = new Date().toDateString();
+            const userDocRef = db.collection("users").doc(userId);
+            
+            try {
+                const userDoc = await userDocRef.get();
+                if (!userDoc.exists) {
+                    await userDocRef.set({ 
+                        id: userId,
+                        name: document.getElementById('user-display-name').textContent,
+                        username: document.getElementById('user-tg-username').textContent,
+                        lastLoginDate: today,
+                        createdAt: new Date()
+                    });
+                } else {
+                    await userDocRef.set({ lastLoginDate: today }, { merge: true });
+                }
+            } catch(e) { console.log(e); }
+
+            generateReferLink(userId);
+            loadEarningTasks();
+        }
+
+        function loadEarningTasks() {
+            const container = document.getElementById('earning-tasks-container');
+            db.collection("tasks").onSnapshot((snapshot) => {
+                container.innerHTML = '';
+                if(snapshot.empty) {
+                    container.innerHTML = `<div style="text-align:center; padding:15px; color:var(--text-muted);">কোনো টাস্ক উপলব্ধ নেই।</div>`;
+                    return;
+                }
+                snapshot.forEach(doc => {
+                    const t = doc.data();
+                    const item = document.createElement('div');
+                    item.className = 'file-card';
+                    item.innerHTML = `
+                        <div class="file-card-content" style="padding: 4px;">
+                            <h4 style="color:var(--primary-color);">${t.title}</h4>
+                            <p style="margin-bottom:6px; color: var(--text-muted); font-size: 12px;">${t.description || 'টাস্কটি সম্পূর্ণ করুন'}</p>
+                            <button class="app-btn" onclick="window.open('${t.taskUrl}', '_blank')" style="max-width:140px; font-size:11px; padding:6px 12px;">
+                                <i class="fas fa-external-link-alt"></i> Complete Task
+                            </button>
+                        </div>
+                    `;
+                    container.appendChild(item);
+                });
+            }, error => {
+                console.error("Tasks Fetch Error: ", error);
+            });
+        }
+
+        window.shareSingleLink = function(title, fileId) {
+            const shareUrl = `https://t.me/${TELEGRAM_BOT_USERNAME}?start=file_${fileId}`;
+            const text = encodeURIComponent(`🔥 ${title}\n\nভিডিওটি দেখতে নিচের লিংকে ক্লিক করুন 👇\n`);
+            window.open(`https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${text}`, '_blank');
+        }
+
+        window.switchTabs = function(targetId, btn) {
+            document.querySelectorAll('.app-tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-trigger-btn').forEach(el => el.classList.remove('active-tab'));
+            document.getElementById(`tab-${targetId}`).classList.add('active');
+            if (btn) btn.classList.add('active-tab');
+        }
+
+        function showCustomToast(msg) {
+            const holder = document.getElementById('toastBoxHolder');
+            const toast = document.createElement('div');
+            toast.className = 'toast-msg';
+            toast.textContent = msg;
+            holder.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        function loadAppData() {
+            db.collection("settings").doc("general").onSnapshot((timerDoc) => {
+                if (timerDoc.exists) {
+                    timerDuration = timerDoc.data().timerDuration || 10;
+                    directAdUrl = timerDoc.data().directAdUrl || ""; 
+                    adsgramBlockId1 = timerDoc.data().adsgramBlockId || "";
+                    adsgramBlockId2 = timerDoc.data().adsgramBlockId2 || ""; 
+                }
+            });
+
+            db.collection("files").orderBy("createdAt", "desc").onSnapshot((snap) => {
+                allFilesData = [];
+                snap.forEach(d => allFilesData.push({ id: d.id, ...d.data() }));
+
+                renderFilesGrid(allFilesData.slice(0, 5), 'latest-uploads-grid');
+                renderFilesGrid(allFilesData, 'files-grid');
+            });
+        }
+
+        function renderFilesGrid(files, elementId) {
+            const grid = document.getElementById(elementId);
+            grid.innerHTML = '';
+            files.forEach(file => {
+                const required = file.requiredAds || 1;
+                let adData = window.getFileData(file.id);
+                let currentCount = adData.count;
+                
+                const card = document.createElement('div');
+                card.className = 'file-card';
+                
+                let buttonHtml = '';
+                if (currentCount >= required && adData.unlockTime && (Date.now() - adData.unlockTime < 3600000)) {
+                    buttonHtml = `<button class="app-btn" style="background-color: var(--success-color);" onclick="window.open('${file.downloadUrl}', '_blank')"><i class="fas fa-download"></i> Download</button>`;
+                } else {
+                    buttonHtml = `<button class="app-btn unlock-btn" onclick="handleUnlockClick('${file.id}', this)"><i class="fas fa-lock"></i> Unlock (${currentCount}/${required})</button>`;
+                }
+
+                card.innerHTML = `
+                    <div class="file-thumb-container">
+                        <img src="${file.thumbnailUrl || 'https://via.placeholder.com/80'}" alt="thumbnail">
+                    </div>
+                    <div class="file-card-content">
+                        <div class="file-card-info">
+                            <h4>${file.title || 'Untitled'}</h4>
+                            <p>${file.description || 'কোনো ডেসক্রিপশন নেই'}</p>
+                        </div>
+                        <div class="file-action-area">
+                            ${buttonHtml}
+                            <button class="share-circle-btn" onclick="shareSingleLink('${file.title.replace(/'/g, "\\'")}', '${file.id}')">
+                                <i class="fas fa-share"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        window.handleSearch = function() {
+            const term = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = allFilesData.filter(f => f.title.toLowerCase().includes(term));
+            renderFilesGrid(filtered, 'files-grid');
+            document.getElementById('no-results').style.display = filtered.length === 0 ? 'block' : 'none';
+        }
+
+        window.handleUnlockClick = async function(fileId, btn) {
+            if (!btn || btn.classList.contains('btn-disabled')) return;
+            
+            const file = allFilesData.find(f => f.id === fileId);
+            if (!file) return;
+
+            btn.classList.add('btn-disabled');
+            btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Loading Ad...`;
+
+            try {
+                await db.collection("files").doc(fileId).update({
+                    views: firebase.firestore.FieldValue.increment(1)
+                });
+            } catch(e) { console.log(e); }
+
+            const triggerPointsCounting = () => {
+                let countdown = timerDuration;
+                btn.innerHTML = `<i class="fas fa-clock"></i> Wait ${countdown}s`;
+                
+                const interval = setInterval(async () => {
+                    countdown--;
+                    if (countdown > 0) {
+                        btn.innerHTML = `<i class="fas fa-clock"></i> Wait ${countdown}s`;
+                    } else {
+                        clearInterval(interval);
+                        
+                        let adData = window.getFileData(file.id);
+                        let currentCount = adData.count + 1;
+                        const required = file.requiredAds || 1;
+
+                        let unlockTime = null;
+                        if (currentCount >= required) unlockTime = Date.now();
+                        
+                        window.setFileData(file.id, currentCount, unlockTime);
+                        renderFilesGrid(allFilesData.slice(0, 5), 'latest-uploads-grid');
+                        renderFilesGrid(allFilesData, 'files-grid');
+                        showCustomToast("পয়েন্ট যুক্ত হয়েছে!");
+                    }
+                }, 1000);
+            };
+
+            let adData = window.getFileData(file.id);
+            let targetBlockId = (adData.count % 2 === 0) ? adsgramBlockId1 : (adsgramBlockId2 || adsgramBlockId1);
+
+            if (targetBlockId && targetBlockId.trim() !== "") {
+                if (window.Adsgram) {
+                    const AdController = window.Adsgram.init({ blockId: targetBlockId.trim() });
+                    AdController.show().then((result) => {
+                        showCustomToast("অ্যাড দেখা সফল হয়েছে!");
+                        triggerPointsCounting();
+                    }).catch((err) => {
+                        console.log("Adsgram failed, playing fallback direct ad...");
+                        runBackupRedirectAd(triggerPointsCounting);
+                    });
+                } else {
+                    runBackupRedirectAd(triggerPointsCounting);
+                }
+            } else {
+                runBackupRedirectAd(triggerPointsCounting);
+            }
+        }
+
+        function runBackupRedirectAd(successCallback) {
+            if (directAdUrl && directAdUrl.trim() !== "") {
+                window.open(directAdUrl, '_blank');
+                successCallback();
+            } else {
+                window.open('https://www.google.com', '_blank'); 
+                successCallback();
+            }
+        }
+
+        window.addEventListener('load', () => {
+            initUser();
+            loadAppData();
+            updateAdSlide();
+            setInterval(updateAdSlide, 5000);
+        });
+    </script>
+</body>
+</html>
